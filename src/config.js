@@ -1,4 +1,4 @@
-import findByAria from 'finders/find-by-aria/index.js';
+import findByAria from './finders/find-by-aria/index';
 import findByLabel from './finders/find-by-label';
 import findByName from './finders/find-by-name';
 
