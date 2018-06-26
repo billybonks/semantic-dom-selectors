@@ -1,11 +1,12 @@
 {
   "name": "semantic-dom-selectors",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Select dom elements using html semantics instead of css",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "build": "rollup -c",
+    "prepublish": "rollup -c",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll --notify"
   },
