@@ -12,7 +12,10 @@ export default {
   output: {
     name: 'SemanticDomSelectors',
     file: 'dist/semantic-dom-selectors.js',
-    format: 'umd',
+    format: 'amd',
+    amd: {
+      id: 'semantic-dom-selectors'
+    },
     sourcemap: true,
   },
 };
