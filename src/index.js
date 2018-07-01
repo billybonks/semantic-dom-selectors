@@ -1,4 +1,5 @@
-import config from './config'
+import config from './config';
+import notify from './notify';
 import findByAria from './finders/find-by-aria/index';
 import findByLabel from './finders/find-by-label';
 import findByName from './finders/find-by-name';
@@ -14,6 +15,7 @@ export {
   findObject,
   findObjects,
   config,
+  notify,
   findByAria,
   findByLabel,
   findByName,
