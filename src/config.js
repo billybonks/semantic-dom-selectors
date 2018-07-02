@@ -1,16 +1,7 @@
-import findByAria from './finders/find-by-aria/index';
-import findByLabel from './finders/find-by-label';
-import findByName from './finders/find-by-name';
-
-let baseFinder = {
-  key:'ariaNotFound',
-  run: findByAria
-}
-
 class Config {
   constructor(){
     this.registeredFinders = [];
-    this.defaultFinders = [baseFinder,findByLabel,findByName];
+    this.defaultFinders = [];
     this.errorLevelOptions = {};
     this.customActors = {
       select: [],
@@ -18,6 +9,16 @@ class Config {
       toggle: [],
       button: [],
     }
+  }
+
+  trim(text) {
+    return text.split('\n').reduce( (acc, value) => {
+      if (value) {
+        return acc + ' ' + value.trim()
+      } else {
+         return acc
+      }
+    });
   }
 
   registerFinder(finder){
