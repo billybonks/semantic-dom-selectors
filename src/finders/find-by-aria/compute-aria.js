@@ -1,3 +1,5 @@
+import config from '../../config';
+
 const computeTextAlternativeForElement = (element, label = '') => {
   if(!label && element.attributes['aria-label'] && element.attributes['aria-label'].value){
     label = element.attributes['aria-label'].value;
@@ -5,7 +7,7 @@ const computeTextAlternativeForElement = (element, label = '') => {
 
   if(!label && element.labels && element.labels.length){
     label = Array.prototype.slice.call(element.labels).map( (label) => {
-      return label.innerText
+      return label.innerText;
     }).join('');
   }
 
@@ -20,7 +22,7 @@ const computeTextAlternativeForElement = (element, label = '') => {
 
   //try innerText for buttons
   if(!label && element.innerText){
-    label = element.innerText;
+    label = element.innerText
   }
 
   //try value for input as buttons
@@ -53,8 +55,8 @@ export default function(element){
   }
 
   if(label) {
-    label = label.toLowerCase().trim();
+    label = config.trim(label);
   }
 
-  return label
+  return label.toLowerCase();
 }

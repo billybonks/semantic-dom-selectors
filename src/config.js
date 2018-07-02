@@ -11,6 +11,16 @@ class Config {
     }
   }
 
+  trim(text) {
+    return text.split('\n').reduce( (acc, value) => {
+      if (value) {
+        return acc + ' ' + value.trim()
+      } else {
+         return acc
+      }
+    });
+  }
+
   registerFinder(finder){
     this.errorLevelOptions[finder.key] = 1;
     this.registeredFinders.push(finder)
