@@ -12,13 +12,7 @@ class Config {
   }
 
   trim(text) {
-    return text.split('\n').reduce( (acc, value) => {
-      if (value) {
-        return acc + ' ' + value.trim()
-      } else {
-         return acc
-      }
-    });
+    return text.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
   }
 
   registerFinder(finder){
