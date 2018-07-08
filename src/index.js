@@ -3,7 +3,7 @@ import notify from './notify';
 
 import { findButton, findButtons, findControl, findControls, findObject, findObjects} from './find-functions';
 import { buttonQuery, textQuery, toggleQuery, selectQuery, formControlQuery } from './definitions/selectors';
-import types from 'definitions/types';
+import * as types from './definitions/types';
 
 import findByAria from './finders/find-by-aria/index';
 import findByLabel from './finders/find-by-label';
