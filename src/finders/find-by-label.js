@@ -9,8 +9,8 @@ export default {
   }
 }
 
-function findByLabel(selector, text) {
-  let label = findByAria('label', text);
+function findByLabel(selector, text, { within = config.rootElement } = {}) {
+  let label = findByAria('label', text, { within });
   if(label.length) {
     label = label[0]
     let target = label.attributes.for;
@@ -25,7 +25,7 @@ function findByLabel(selector, text) {
         }
 
       }).join(',');
-      elements = config.rootElement.querySelectorAll(selector);
+      elements = within.querySelectorAll(selector);
       if(elements && elements.length){
         return elements;
       } else {

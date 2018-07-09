@@ -8,7 +8,7 @@ export default {
   }
 }
 
-function findByName(selector, text) {
+function findByName(selector, text, { within } = {}) {
   let elements = selector.split(',');
-  return findAll(elements.join(`[name="${text}"],`)+`[name="${text}"]`);
+  return findAll(elements.join(`[name="${text}"],`)+`[name="${text}"]`, { within });
 }
