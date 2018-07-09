@@ -9,7 +9,7 @@ class Config {
       toggle: [],
       button: [],
     }
-    this._rootElement = document;
+    this._rootElement = document.documentElement;
   }
 
   trim(text) {
