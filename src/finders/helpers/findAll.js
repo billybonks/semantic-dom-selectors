@@ -1,3 +1,5 @@
+import config from '../../config';
+
 export default function(selector) {
-  return [...document.querySelectorAll(selector)];
+  return [...config.rootElement.querySelectorAll(selector)];
 }

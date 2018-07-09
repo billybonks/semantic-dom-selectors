@@ -9,10 +9,25 @@ class Config {
       toggle: [],
       button: [],
     }
+    this._rootElement = document;
   }
 
   trim(text) {
     return text.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+
+  get rootElement(){
+    return this._rootElement;
+  }
+
+  set rootElement(element){
+    if(element) {
+      this._rootElement = element;
+    } else {
+      throw new Error('You tried to set root element to null');
+    }
+
   }
 
   registerFinder(finder){

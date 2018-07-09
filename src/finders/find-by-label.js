@@ -1,4 +1,5 @@
 import findByAria from './find-by-aria/index';
+import config from '../config';
 
 export default {
   run: findByLabel,
@@ -24,7 +25,7 @@ function findByLabel(selector, text) {
         }
 
       }).join(',');
-      elements = document.querySelectorAll(selector);
+      elements = config.rootElement.querySelectorAll(selector);
       if(elements && elements.length){
         return elements;
       } else {
