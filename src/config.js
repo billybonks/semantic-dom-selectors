@@ -22,7 +22,12 @@ class Config {
   }
 
   set rootElement(element){
-    this._rootElement = element;
+    if(element) {
+      this._rootElement = element;
+    } else {
+      throw new Error('You tried to set root element to null');
+    }
+
   }
 
   registerFinder(finder){
