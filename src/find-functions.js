@@ -11,35 +11,35 @@ let queryHash = {
 }
 
 
-let _findControl = function (method, labelText, type = 'form'){
-  return method(queryHash[type], labelText, type)
+let _findControl = function (method, labelText, { type = 'form', within } = {}){
+  return method(queryHash[type], labelText, { type, within })
 }
 
-export function findButton(labelText){
-  return findControl(labelText, 'button');
+export function findButton(labelText, { within } = {}){
+  return findControl(labelText, { type: 'button', within });
 }
 
-export function findButtons(labelText){
-  return findControls(labelText, 'button');
+export function findButtons(labelText, { within } = {}){
+  return findControls(labelText, { type: 'button', within });
 }
 
-export function findControl(labelText, type) {
-  return _findControl(findObject, labelText, type)
+export function findControl(labelText, { type, within } = {}) {
+  return _findControl(findObject, labelText, { type, within })
 }
 
-export function findControls(labelText, type) {
-  return _findControl(findObjects, labelText, type)
+export function findControls(labelText, { type, within } = {}) {
+  return _findControl(findObjects, labelText, { type, within })
 }
 
-export function findObject(selector, labelText, type) {
-  let objects = findObjects(selector, labelText, type)
+export function findObject(selector, labelText, { type, within } = {}) {
+  let objects = findObjects(selector, labelText, { type, within })
   if(objects.length > 1){
     notify('ambiguousLabel', type, labelText);
   }
   return objects[0];
 }
 
-export function findObjects(selector, labelText, type='object', index=0) {
+export function findObjects(selector, labelText, { type='object', within, index = 0 } = {}) {
   let finders = config.finders;
   if(finders.length === index) {
     return
@@ -48,9 +48,9 @@ export function findObjects(selector, labelText, type='object', index=0) {
   let key = finder.key
   let strategy = finder.run
 
-  let objects = strategy(selector, labelText)
+  let objects = strategy(selector, labelText, { within })
   if(!objects || objects.length == 0){
-    objects = findObjects(selector, labelText, type, index + 1)
+    objects = findObjects(selector, labelText, { type, within, index: index + 1 })
     if(index == finders.length-1){
       return
     }
