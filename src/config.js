@@ -9,10 +9,20 @@ class Config {
       toggle: [],
       button: [],
     }
+    this._rootElement = document;
   }
 
   trim(text) {
     return text.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+
+
+  get rootElement(){
+    return this._rootElement;
+  }
+
+  set rootElement(element){
+    this._rootElement = element;
   }
 
   registerFinder(finder){

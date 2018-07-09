@@ -44,7 +44,7 @@ export default function(element){
   if(element.attributes['aria-labelledby'] && element.attributes['aria-labelledby'].value) {
     let ids = element.attributes['aria-labelledby'].value;
     label = ids.split(' ').map( (id) => {
-      let element = document.querySelector(`#${id}`);
+      let element = config.rootElement.querySelector(`#${id}`);
       if(element){
         return computeTextAlternativeForElement(element);
       }
