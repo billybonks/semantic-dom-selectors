@@ -1,8 +1,6 @@
 import computeAria from './compute-aria';
-import findAll from './../helpers/findAll';
+import findAll from '../helpers/findAll';
 
 export default function findByAria(selector, labelText) {
-  return findAll(selector).filter( (element) => {
-    return computeAria(element) === labelText.toLowerCase()
-  });
+  return findAll(selector).filter(element => computeAria(element) === labelText.toLowerCase());
 }

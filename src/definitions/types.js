@@ -1,4 +1,4 @@
-export let button = [
+export const button = [
   'button',
   'a',
   '[role="button"]',
@@ -7,28 +7,28 @@ export let button = [
   'input[type="submit"]',
   '[role="link"]',
   '[role="menuitem"]',
-  'input[alt][type="image"]'
+  'input[alt][type="image"]',
 ];
 
 
-export let text = [
+export const text = [
   'input',
   'textarea',
   '[role="slider"]',
   '[role="spinbutton"]',
   '[role="textbox"]',
   '[contenteditable="true"]',
-]
+];
 
-export let toggle = [
+export const toggle = [
   '[role="menuitemcheckbox"]',
   '[role="checkbox"]',
   '[type="checkbox"]',
-]
+];
 
-export let select = [
+export const select = [
   '[role="menuitemradio"]',
   'select',
   '[role="listbox"]',
   '[role="radiogroup"]',
-]
+];
