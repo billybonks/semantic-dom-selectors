@@ -28,15 +28,17 @@
     "jest-runner-eslint": "^0.6.0"
   },
   "jest": {
-    "runner": "jest-runner-eslint",
-    "displayName": "lint",
-    "testMatch": [
-      "<rootDir>/src/**/*.js"
-    ]
-  },
-  "jest-runner-eslint": {
-    "cliOptions": {
-      "fix": true
+    "verbose": true,
+    "projects": [
+      {
+        "testURL": "http://localhost/",
+        "displayName": "test"
+      },
+      {
+        "displayName": "lint",
+        "runner": "jest-runner-eslint",
+        "testMatch": ["<rootDir>/src/**/*.js"]
       }
+    ]
   }
 }
