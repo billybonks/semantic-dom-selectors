@@ -1,14 +1,6 @@
 import findByAria from './find-by-aria/index';
 import config from '../config';
 
-export default {
-  run: findByLabel,
-  key: 'invalidFor',
-  errorText(type, labelText) {
-    return `Control ${labelText} found through invalid label for relationship`;
-  },
-};
-
 function findByLabel(selector, text) {
   let label = findByAria('label', text);
   if (label.length) {
@@ -31,4 +23,13 @@ function findByLabel(selector, text) {
     }
     throw new Error(`Label was found for ${text} but it did not have a for attribute`);
   }
+  return null;
 }
+
+export default {
+  run: findByLabel,
+  key: 'invalidFor',
+  errorText(type, labelText) {
+    return `Control ${labelText} found through invalid label for relationship`;
+  },
+};

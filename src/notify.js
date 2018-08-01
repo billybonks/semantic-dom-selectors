@@ -1,5 +1,17 @@
 import config from './config';
 
+
+function buildMessage(rule, type, labelText) {
+  switch (rule) {
+    case 'ambiguousLabel':
+      return `Multiple ${type} labelled ${labelText} where found`;
+    case 'missingObject':
+      return `Could not find ${type} labelled '${labelText}'`;
+    default:
+      return `Custom rule ${rule} found ${type} labelled '${labelText}'`;
+  }
+}
+
 export default function (rule, type, labelText, generateMessage) {
   const rules = config.rules;
   let level = rules[rule];
@@ -17,17 +29,8 @@ export default function (rule, type, labelText, generateMessage) {
     case 1:
       // eslint-disable-next-line no-console
       console.warn(message);
-  }
-}
-
-
-function buildMessage(rule, type, labelText) {
-  switch (rule) {
-    case 'ambiguousLabel':
-      return `Multiple ${type} labelled ${labelText} where found`;
-    case 'missingObject':
-      return `Could not find ${type} labelled '${labelText}'`;
+      break;
     default:
-      return `Custom rule ${rule} found ${type} labelled '${labelText}'`;
+      // no-op
   }
 }
