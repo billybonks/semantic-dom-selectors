@@ -1,5 +1,9 @@
 class Config {
   constructor() {
+    this.reset();
+  }
+
+  reset(){
     this.registeredFinders = [];
     this.defaultFinders = [];
     this.errorLevelOptions = {};
