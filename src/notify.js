@@ -18,7 +18,14 @@ export default function (rule, type, labelText, generateMessage) {
   if (isNaN(level)) {
     level = 0;
   }
-  const humanizedType = `${type.charAt(0).toUpperCase() + type.slice(1)} Control`;
+
+  let humanizedType;
+  if (type) {
+    humanizedType = `${type.charAt(0).toUpperCase() + type.slice(1)} Control`;
+  } else {
+    humanizedType = 'Element';
+  }
+
   const message = generateMessage
     ? generateMessage(humanizedType, labelText)
     : buildMessage(rule, humanizedType, labelText);
