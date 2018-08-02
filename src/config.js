@@ -41,6 +41,12 @@ class Config {
   }
 
   registerActor({ type, run }) {
+    if(!type){
+      throw new Error('You must specify the type of attribute of actor object');
+    }
+    if(!Object.keys(this.customActors).includes(type)){
+      throw new Error(`Unkown actor type ${type}`);
+    }
     this.customActors[type].push(run);
   }
 
