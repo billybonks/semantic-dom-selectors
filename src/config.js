@@ -34,7 +34,9 @@ class Config {
   }
 
   registerFinder(finder) {
-    this.errorLevelOptions[finder.key] = 1;
+    if(!this.errorLevelOptions[finder.key]){
+      this.errorLevelOptions[finder.key] = 1;
+    }
     this.registeredFinders.push(finder);
   }
 
