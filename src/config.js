@@ -3,7 +3,7 @@ class Config {
     this.reset();
   }
 
-  reset(){
+  reset() {
     this.registeredFinders = [];
     this.defaultFinders = [];
     this.errorLevelOptions = {};
@@ -34,17 +34,17 @@ class Config {
   }
 
   registerFinder(finder) {
-    if(!this.errorLevelOptions[finder.key]){
+    if (!this.errorLevelOptions[finder.key]) {
       this.errorLevelOptions[finder.key] = 1;
     }
     this.registeredFinders.push(finder);
   }
 
   registerActor({ type, run }) {
-    if(!type){
+    if (!type) {
       throw new Error('You must specify the type of attribute of actor object');
     }
-    if(!Object.keys(this.customActors).includes(type)){
+    if (!Object.keys(this.customActors).includes(type)) {
       throw new Error(`Unkown actor type ${type}`);
     }
     this.customActors[type].push(run);

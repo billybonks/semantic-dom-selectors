@@ -1,58 +1,58 @@
-import config  from '../src/config';
+import config from '../src/config';
 
 describe('Configuration Module', () => {
   afterEach(() => {
-    config.reset()
-  })
-  describe('Finder registraition', () => {
+    config.reset();
+  });
 
+  describe('Finder registraition', () => {
     describe('Registering a finder', () => {
       it('it adds it to registerdFinderArray', () => {
         config.registerFinder({
-          key: 'custom-finder'
-        })
+          key: 'custom-finder',
+        });
         expect(config.registeredFinders.length).toEqual(1);
-      })
+      });
 
       describe('sets a rule', () => {
         describe('no rule previously set', () => {
           it('adds a default rule with level of 1', () => {
             config.registerFinder({
-              key: 'custom-finder'
-            })
+              key: 'custom-finder',
+            });
             expect(config.rules['custom-finder']).toEqual(1);
-          })
-        })
+          });
+        });
 
         describe('rule previously set', () => {
           it('does not override setting', () => {
             config.errorLevelOptions = {
               'custom-finder': 2,
-            }
+            };
             config.registerFinder({
-              key: 'custom-finder'
-            })
+              key: 'custom-finder',
+            });
             expect(config.rules['custom-finder']).toEqual(2);
-          })
-        })
-      })
-    })
-  })
+          });
+        });
+      });
+    });
+  });
 
   describe('Actor registraition', () => {
     describe('if type is specified', () => {
       it('adds it to actor array', () => {
         config.registerActor({
-          type:'select',
-          run: () => {}
+          type: 'select',
+          run: () => { },
         });
         expect(config.customActors.select.length).toEqual(1);
       });
 
       test('#getActors returns actors hash', () => {
         config.registerActor({
-          type:'select',
-          run: () => {}
+          type: 'select',
+          run: () => { },
         });
         expect(config.actors).toEqual(config.customActors);
       });
@@ -62,7 +62,7 @@ describe('Configuration Module', () => {
       it('adds it to actor array', () => {
         expect(() => {
           config.registerActor({
-            run: () => {}
+            run: () => { },
           });
         }).toThrowErrorMatchingSnapshot();
       });
@@ -73,8 +73,8 @@ describe('Configuration Module', () => {
       it('adds it to actor array', () => {
         expect(() => {
           config.registerActor({
-            type:'nonsense',
-            run: () => {}
+            type: 'nonsense',
+            run: () => { },
           });
         }).toThrowErrorMatchingSnapshot();
       });
@@ -88,7 +88,7 @@ describe('Configuration Module', () => {
       });
       expect(config.errorLevelOptions).toEqual({
         'custom-finder': 2,
-      })
-    })
-  })
-})
+      });
+    });
+  });
+});
