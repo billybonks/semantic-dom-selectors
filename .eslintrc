@@ -11,6 +11,12 @@
     },
     "globals": {
         document: true,
-        Element: true
+        Element: true,
+        describe: true,
+        beforeEach: true,
+        afterEach: true,
+        test: true,
+        it: true,
+        expect: true,
     }
 }
