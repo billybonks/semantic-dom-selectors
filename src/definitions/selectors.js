@@ -1,7 +1,9 @@
-import { button, text, toggle, select } from './types';
+import {
+  button, text, toggle, select,
+} from './types';
 
-export let buttonQuery = button.join(',');
-export let textQuery  = text.join(',');
-export let toggleQuery = toggle.join(',');
-export let selectQuery = select.join(',');
-export let formControlQuery = [textQuery, toggleQuery, selectQuery].join(',');
+export const buttonQuery = button.join(',');
+export const textQuery = text.join(',');
+export const toggleQuery = toggle.join(',');
+export const selectQuery = select.join(',');
+export const formControlQuery = [textQuery, toggleQuery, selectQuery].join(',');

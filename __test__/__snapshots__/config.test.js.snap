@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Configuration Module Actor registraition if type is not specified adds it to actor array 1`] = `"You must specify the type of attribute of actor object"`;
+
+exports[`Configuration Module Actor registraition if unkown type is specified adds it to actor array 1`] = `"Unkown actor type nonsense"`;

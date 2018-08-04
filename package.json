@@ -18,5 +18,27 @@
     "babel-preset-env": "^1.7.0",
     "rollup": "^0.61.2",
     "rollup-plugin-babel": "^3.0.5"
+  },
+  "devDependencies": {
+    "babel-jest": "^23.4.2",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "13.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "jest": "^23.4.2",
+    "jest-runner-eslint": "^0.6.0"
+  },
+  "jest": {
+    "verbose": true,
+    "projects": [
+      {
+        "testURL": "http://localhost/",
+        "displayName": "test"
+      },
+      {
+        "displayName": "lint",
+        "runner": "jest-runner-eslint",
+        "testMatch": ["<rootDir>/src/**/*.js"]
+      }
+    ]
   }
 }
