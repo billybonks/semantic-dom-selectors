@@ -9,7 +9,7 @@ describe('Configuration Module', () => {
 
   describe('Using presets', () => {
     let selectedPreset;
-    let cusatomConfig;
+    let customConfig;
     let result;
     beforeEach(() => {
       selectedPreset = 'default';
@@ -17,7 +17,7 @@ describe('Configuration Module', () => {
 
     describe('With extra configurations', () => {
       beforeEach(() => {
-        cusatomConfig = {
+        customConfig = {
           preset: selectedPreset,
           rules: {
             'something-else': 1,
@@ -35,14 +35,14 @@ describe('Configuration Module', () => {
       });
       describe('#_merge', () => {
         beforeEach(() => {
-          result = configure._merge(cusatomConfig);
+          result = configure._merge(customConfig);
         });
 
         test('merges actors appropriately', () => {
-          expect(result.actors).toEqual([...cusatomConfig.actors]);
+          expect(result.actors).toEqual([...customConfig.actors]);
         });
         test('merges finders appropriately', () => {
-          expect(result.finders).toEqual([...presetDefault.finders, ...cusatomConfig.finders]);
+          expect(result.finders).toEqual([...presetDefault.finders, ...customConfig.finders]);
         });
         test('merges rules appropriately', () => {
           expect(result.rules).toEqual({
@@ -56,10 +56,10 @@ describe('Configuration Module', () => {
     });
   });
   describe('Without using presets', () => {
-    let cusatomConfig;
+    let customConfig;
     let result;
     beforeEach(() => {
-      cusatomConfig = {
+      customConfig = {
         rules: {
           'something-else': 1,
           'invalid-label-for': 2,
@@ -82,11 +82,11 @@ describe('Configuration Module', () => {
       const orignalSetErrorLevels = config.setErrorLevels;
 
       beforeEach(() => {
-        configure._merge = jest.fn().mockReturnValue(cusatomConfig);
+        configure._merge = jest.fn().mockReturnValue(customConfig);
         config.registerActor = jest.fn();
         config.registerFinder = jest.fn();
         config.setErrorLevels = jest.fn();
-        configure.configure(cusatomConfig);
+        configure.configure(customConfig);
       });
 
       afterEach(() => {
@@ -101,32 +101,32 @@ describe('Configuration Module', () => {
       });
 
       it('Calls registerActor with all actors', () => {
-        expect(config.registerActor).toHaveBeenNthCalledWith(1, cusatomConfig.actors[0]);
-        expect(config.registerActor).toHaveBeenNthCalledWith(2, cusatomConfig.actors[1]);
+        expect(config.registerActor).toHaveBeenNthCalledWith(1, customConfig.actors[0]);
+        expect(config.registerActor).toHaveBeenNthCalledWith(2, customConfig.actors[1]);
         expect(config.registerActor).toHaveBeenCalledTimes(2);
       });
 
       it('Calls registerFinder with all finders', () => {
-        expect(config.registerFinder).toHaveBeenNthCalledWith(1, cusatomConfig.finders[0]);
-        expect(config.registerFinder).toHaveBeenNthCalledWith(2, cusatomConfig.finders[1]);
+        expect(config.registerFinder).toHaveBeenNthCalledWith(1, customConfig.finders[0]);
+        expect(config.registerFinder).toHaveBeenNthCalledWith(2, customConfig.finders[1]);
         expect(config.registerFinder).toHaveBeenCalledTimes(2);
       });
 
       it('sets ErrorLevels', () => {
-        expect(config.setErrorLevels).toHaveBeenCalledWith(cusatomConfig.rules);
+        expect(config.setErrorLevels).toHaveBeenCalledWith(customConfig.rules);
         expect(config.setErrorLevels).toHaveBeenCalledTimes(1);
       });
     });
 
     describe('#_merge', () => {
       beforeEach(() => {
-        result = configure._merge(cusatomConfig);
+        result = configure._merge(customConfig);
       });
       test('merges actors as is', () => {
-        expect(result.actors).toEqual([...cusatomConfig.actors]);
+        expect(result.actors).toEqual([...customConfig.actors]);
       });
       test('merges finders as is', () => {
-        expect(result.finders).toEqual([...cusatomConfig.finders]);
+        expect(result.finders).toEqual([...customConfig.finders]);
       });
       test('merges rules as is', () => {
         expect(result.rules).toEqual({
