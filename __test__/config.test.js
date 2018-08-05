@@ -104,6 +104,46 @@ describe('Configuration Module', () => {
   });
 
   describe('Rule customisation', () => {
+    describe('--deprecations-- when using a deprecated rule name', () => {
+      let rules;
+
+      beforeEach(() => {
+        rules = {
+          ariaNotFound: 2,
+          invalidFor: 1,
+          perceivedByName: 0,
+        };
+      });
+
+      it('notifies user that rule name is deprecated', () => {
+        const originalWarn = console.warn;
+        console.warn = jest.fn();
+        config.remapDeprecatedRules(rules);
+        expect(console.warn).toHaveBeenNthCalledWith(1, 'DEPRECATION: rule ariaNotFound name is deprecated please use aria-compliant');
+        expect(console.warn).toHaveBeenNthCalledWith(2, 'DEPRECATION: rule invalidFor name is deprecated please use invalid-label-for');
+        expect(console.warn).toHaveBeenNthCalledWith(3, 'DEPRECATION: rule perceivedByName name is deprecated please use name-attribute');
+        console.warn = originalWarn;
+      });
+
+      it('maps rule to new name', () => {
+        const result = config.remapDeprecatedRules(rules);
+        expect(result).toEqual({
+          'aria-compliant': 2,
+          'invalid-label-for': 1,
+          'name-attribute': 0,
+        });
+      });
+
+      it('calls remapDeprecatedRules', () => {
+        config.setErrorLevels({
+          ariaNotFound: 2,
+        });
+        expect(config.errorLevelOptions).toEqual({
+          'aria-compliant': 2,
+        });
+      });
+    });
+
     test('you can whole sale set error levels', () => {
       config.setErrorLevels({
         'custom-finder': 2,

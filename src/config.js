@@ -1,3 +1,9 @@
+const deprecatedMappings = {
+  ariaNotFound: 'aria-compliant',
+  invalidFor: 'invalid-label-for',
+  perceivedByName: 'name-attribute',
+};
+
 class Config {
   constructor() {
     this.reset();
@@ -52,8 +58,21 @@ class Config {
     this.customActors[type].push(run);
   }
 
+  remapDeprecatedRules(rules) {
+    return Object.keys(rules).reduce((acc, key) => {
+      const remappedDeprecation = deprecatedMappings[key];
+      if (remappedDeprecation) {
+        console.warn(`DEPRECATION: rule ${key} name is deprecated please use ${remappedDeprecation}`);
+        acc[remappedDeprecation] = rules[key];
+      } else {
+        acc[key] = rules[key];
+      }
+      return acc;
+    }, {});
+  }
+
   setErrorLevels(config) {
-    this.errorLevelOptions = config;
+    this.errorLevelOptions = this.remapDeprecatedRules(config);
   }
 
   get actors() {
