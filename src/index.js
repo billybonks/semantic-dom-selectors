@@ -9,16 +9,11 @@ import {
 } from './definitions/selectors';
 import * as types from './definitions/types';
 
-import findByAria from './finders/find-by-aria/index';
+import findByAria from './finders/find-by-aria/rule';
 import findByLabel from './finders/find-by-label';
 import findByName from './finders/find-by-name';
 
-const baseFinder = {
-  key: 'ariaNotFound',
-  run: findByAria,
-};
-
-config.defaultFinders = [baseFinder, findByLabel, findByName];
+config.defaultFinders = [findByAria, findByLabel, findByName];
 
 export default {
   findButton,
