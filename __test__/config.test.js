@@ -175,7 +175,7 @@ describe('Configuration Module', () => {
         const originalWarn = console.warn;
         console.warn = jest.fn();
         config.remapDeprecatedRules(rules);
-        expect(console.warn).toHaveBeenNthCalledWith(1, 'DEPRECATION: rule ariaNotFound name is deprecated please use aria-compliant');
+        expect(console.warn).toHaveBeenNthCalledWith(1, 'DEPRECATION: rule ariaNotFound name is deprecated please use not-aria-compliant');
         expect(console.warn).toHaveBeenNthCalledWith(2, 'DEPRECATION: rule invalidFor name is deprecated please use invalid-label-for');
         expect(console.warn).toHaveBeenNthCalledWith(3, 'DEPRECATION: rule perceivedByName name is deprecated please use name-attribute');
         console.warn = originalWarn;
@@ -184,7 +184,7 @@ describe('Configuration Module', () => {
       it('maps rule to new name', () => {
         const result = config.remapDeprecatedRules(rules);
         expect(result).toEqual({
-          'aria-compliant': 2,
+          'not-aria-compliant': 2,
           'invalid-label-for': 1,
           'name-attribute': 0,
         });
@@ -195,7 +195,7 @@ describe('Configuration Module', () => {
           ariaNotFound: 2,
         });
         expect(config.errorLevelOptions).toEqual({
-          'aria-compliant': 2,
+          'not-aria-compliant': 2,
         });
       });
     });

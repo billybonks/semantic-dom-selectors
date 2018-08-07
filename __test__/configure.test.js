@@ -48,7 +48,7 @@ describe('Configuration Module', () => {
           expect(result.rules).toEqual({
             'something-else': 1,
             'invalid-label-for': 2,
-            'aria-compliant': 1,
+            'not-aria-compliant': 1,
             'name-attribute': 1,
           });
         });

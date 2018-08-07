@@ -1,5 +1,5 @@
 const deprecatedMappings = {
-  ariaNotFound: 'aria-compliant',
+  ariaNotFound: 'not-aria-compliant',
   invalidFor: 'invalid-label-for',
   perceivedByName: 'name-attribute',
 };

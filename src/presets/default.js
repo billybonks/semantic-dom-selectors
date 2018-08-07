@@ -9,7 +9,7 @@ export default {
     findByName,
   ],
   rules: {
-    'aria-compliant': 1,
+    'not-aria-compliant': 1,
     'invalid-label-for': 1,
     'name-attribute': 1,
   },
