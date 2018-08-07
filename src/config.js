@@ -19,20 +19,47 @@ class Config {
       toggle: [],
       button: [],
     };
-    this._rootElement = document.documentElement;
+    this._rootElementSelector = null;
   }
 
   trim(text) {
     return text.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
   }
 
+  set rootElementSelector(selector) {
+    if (typeof selector === 'string' || selector instanceof String) {
+      try {
+        document.querySelector(selector);
+      } catch (e) {
+        throw new Error(`You Tried to set rootElementSelector to ${selector}, but the selector is invalid`);
+      }
+      this._rootElementSelector = selector;
+    } else {
+      throw new Error(`You Tried to set rootElementSelector to ${selector}, but it was not a string`);
+    }
+  }
+
+  get rootElementSelector() {
+    return this._rootElementSelector;
+  }
 
   get rootElement() {
-    return this._rootElement;
+    if (this._rootElement) {
+      return this._rootElement;
+    }
+    if (this.rootElementSelector) {
+      const element = document.querySelector(this.rootElementSelector);
+      if (element) {
+        return element;
+      }
+      console.warn('Tried to find root element using this.rootElementSelector, but no element was found, falling back to rootElement');
+    }
+    console.warn('rootElement seems to be null falling back to document.documentElement');
+    return document.documentElement;
   }
 
   set rootElement(element) {
-    if (element instanceof Element) {
+    if (element instanceof Element || element == null) {
       this._rootElement = element;
     } else {
       throw new Error(`rootElement Error: You tried to set root element to ${element}`);

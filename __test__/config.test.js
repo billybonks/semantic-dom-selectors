@@ -1,5 +1,29 @@
 import config from '../src/config';
 
+function render(html) {
+  const element = document.createElement('div');
+  const body = document.querySelector('body');
+  element.innerHTML = html;
+  body.appendChild(element);
+}
+
+function whenRootElementExists() {
+  describe('when _rootElement exists', () => {
+    let root = null;
+    beforeEach(() => {
+      root = document.createElement('div');
+      config.rootElement = root;
+    });
+
+    afterEach(() => {
+      config.rootElement = null;
+    });
+    it('returns rootElement', () => {
+      expect(config.rootElement).toEqual(root);
+    });
+  });
+}
+
 describe('Configuration Module', () => {
   afterEach(() => {
     config.reset();
@@ -24,6 +48,38 @@ describe('Configuration Module', () => {
 
     test('check dom', () => {
       expect(document.body.innerHTML).toEqual('');
+    });
+  });
+
+  describe('Registering a finder', () => {
+    it('adds it to registerdFinderArray', () => {
+      config.registerFinder({
+        key: 'custom-finder',
+      });
+      expect(config.registeredFinders.length).toEqual(1);
+    });
+
+    describe('sets a rule', () => {
+      describe('no rule previously set', () => {
+        it('adds a default rule with level of 1', () => {
+          config.registerFinder({
+            key: 'custom-finder',
+          });
+          expect(config.rules['custom-finder']).toEqual(1);
+        });
+      });
+
+      describe('rule previously set', () => {
+        it('does not override setting', () => {
+          config.errorLevelOptions = {
+            'custom-finder': 2,
+          };
+          config.registerFinder({
+            key: 'custom-finder',
+          });
+          expect(config.rules['custom-finder']).toEqual(2);
+        });
+      });
     });
   });
 

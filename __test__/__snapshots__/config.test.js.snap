@@ -3,3 +3,11 @@
 exports[`Configuration Module Actor registraition if type is not specified adds it to actor array 1`] = `"You must specify the type of attribute of actor object"`;
 
 exports[`Configuration Module Actor registraition if unkown type is specified adds it to actor array 1`] = `"Unkown actor type nonsense"`;
+
+exports[`Configuration Module rootElement configuration setRootElement does not support other random inputs 1`] = `"rootElement Error: You tried to set root element to qqqq"`;
+
+exports[`Configuration Module rootElement configuration setRootElement does not support other trees extending node 1`] = `"rootElement Error: You tried to set root element to [object Text]"`;
+
+exports[`Configuration Module rootElement configuration setting rootElementSelector only allows strings 1`] = `"You Tried to set rootElementSelector to 1, but it was not a string"`;
+
+exports[`Configuration Module rootElement configuration setting rootElementSelector only allows valid selector strings 1`] = `"You Tried to set rootElementSelector to asdasd::, but the selector is invalid"`;
