@@ -29,6 +29,49 @@ describe('Configuration Module', () => {
     config.reset();
   });
 
+  describe('rootElement configuration', () => {
+    describe('Getting rootElement', () => {
+      describe('When rootElementSelector is present', () => {
+        beforeEach(() => {
+          config.rootElementSelector = '#main-wrapper';
+        });
+
+        afterEach(() => {
+          const body = document.querySelector('body');
+          if (body.firstChild) {
+            body.removeChild(body.firstChild);
+          }
+        });
+
+        describe('Element exists on page', () => {
+          beforeEach(() => {
+            render('<div id=\'main-wrapper\'>');
+          });
+          whenRootElementExists();
+          describe('when root element does not exist', () => {
+            test('returns selector element', () => {
+              expect(config.rootElement).toEqual(document.querySelector('#main-wrapper'));
+            });
+          });
+        });
+        describe('Element does not exist on page', () => {
+          whenRootElementExists();
+          test('warns use that element was not found', () => {
+            jest.spyOn(console, 'warn');
+            config.rootElement; // eslint-disable-line no-unused-expressions
+            expect(console.warn).toHaveBeenCalledTimes(2);
+            expect(console.warn).toHaveBeenCalledWith('Tried to find root element using this.rootElementSelector, but no element was found, falling back to rootElement');
+            expect(console.warn).toHaveBeenCalledWith('rootElement seems to be null falling back to document.documentElement');
+            console.warn.mockRestore();
+          });
+          test('returns document.documentElement', () => {
+            expect(config.rootElement).toEqual(document.documentElement);
+          });
+        });
+      });
+    });
+  });
+
   describe('Trim', () => {
     afterEach(() => {
       document.body.innerHTML = '';
