@@ -99,7 +99,10 @@ class Config {
   }
 
   setErrorLevels(config) {
-    this.errorLevelOptions = this.remapDeprecatedRules(config);
+    this.errorLevelOptions = Object.assign(
+      this.errorLevelOptions,
+      this.remapDeprecatedRules(config),
+    );
   }
 
   get actors() {
@@ -111,16 +114,7 @@ class Config {
   }
 
   get rules() {
-    const rules = this.finders.reduce((acc, finder) => {
-      const config = this.errorLevelOptions[finder.key];
-      if (isNaN(config)) {
-        acc[finder.key] = 1;
-      } else {
-        acc[finder.key] = config;
-      }
-      return acc;
-    }, {});
-    return rules;
+    return this.errorLevelOptions;
   }
 }
 
