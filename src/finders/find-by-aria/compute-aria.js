@@ -32,6 +32,11 @@ const computeTextAlternativeForElement = (element, label = '') => {
     label = element.attributes.title.value;
   }
 
+  // fallback textContent for labels
+  if (!label && element.textContent) {
+    label = element.textContent;
+  }
+
   return label;
 };
 
