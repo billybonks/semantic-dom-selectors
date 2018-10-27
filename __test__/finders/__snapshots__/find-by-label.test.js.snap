@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Find by label Label exists without "for" attribute throws error 1`] = `"Label was found for Hello! but it did not have a for attribute"`;
