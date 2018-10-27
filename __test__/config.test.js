@@ -5,9 +5,31 @@ describe('Configuration Module', () => {
     config.reset();
   });
 
-  describe('Finder registraition', () => {
+  describe('Trim', () => {
+    afterEach(() => {
+      document.body.innerHTML = '';
+    });
+
+    test('it trims markup to single-spaced string', () => {
+      const markup = `
+        <button id="expected">
+          <h3>Button Title</h3>
+          <p>Description</p>
+        </button>
+      `;
+      document.body.innerHTML = markup;
+      expect(config.trim(document.body.innerHTML))
+        .toEqual('<button id="expected"> <h3>Button Title</h3> <p>Description</p> </button>');
+    });
+
+    test('check dom', () => {
+      expect(document.body.innerHTML).toEqual('');
+    });
+  });
+
+  describe('Finder registration', () => {
     describe('Registering a finder', () => {
-      it('it adds it to registerdFinderArray', () => {
+      it('adds it to registerdFinderArray', () => {
         config.registerFinder({
           key: 'custom-finder',
         });
