@@ -1,3 +1,5 @@
+import normalizeRules from './config/normalize-rules';
+
 const deprecatedMappings = {
   ariaNotFound: 'not-aria-compliant',
   invalidFor: 'invalid-label-for',
@@ -99,7 +101,7 @@ class Config {
   setErrorLevels(config) {
     this.errorLevelOptions = Object.assign(
       this.errorLevelOptions,
-      this.remapDeprecatedRules(config),
+      normalizeRules(this.remapDeprecatedRules(config)),
     );
   }
 

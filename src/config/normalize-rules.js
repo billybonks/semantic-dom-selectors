@@ -1,4 +1,4 @@
-const RULE_SEVERITY_STRINGS = ['error', 'warn', 'off'];
+const RULE_SEVERITY_STRINGS = ['off', 'warn', 'error'];
 const RULE_SEVERITY = RULE_SEVERITY_STRINGS.reduce((map, value, index) => {
   map[value] = index;
   return map;
@@ -11,7 +11,7 @@ export default function normalizeRules(rules) {
     const severity = rules[ruleKey];
     if (VALID_SEVERITIES.includes(severity)) {
       if (RULE_SEVERITY_STRINGS.includes(severity)) {
-        normalizedSeverity = [RULE_SEVERITY[severity]];
+        normalizedSeverity = RULE_SEVERITY[severity];
       } else {
         normalizedSeverity = severity;
       }

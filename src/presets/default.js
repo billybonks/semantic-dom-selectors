@@ -9,8 +9,8 @@ export default {
     findByName,
   ],
   rules: {
-    'not-aria-compliant': 1,
-    'invalid-label-for': 1,
-    'name-attribute': 1,
+    'not-aria-compliant': 'warn',
+    'invalid-label-for': 'warn',
+    'name-attribute': 'warn',
   },
 };
