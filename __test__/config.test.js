@@ -30,19 +30,52 @@ describe('Configuration Module', () => {
   });
 
   describe('rootElement configuration', () => {
+    describe('setting rootElementSelector', () => {
+      test('only allows strings', () => {
+        expect(() => {
+          config.rootElementSelector = 1;
+        }).toThrowErrorMatchingSnapshot();
+      });
+      test('only allows valid selector strings', () => {
+        expect(() => {
+          config.rootElementSelector = 'asdasd::';
+        }).toThrowErrorMatchingSnapshot();
+      });
+      test('only allows valid selector strings', () => {
+        config.rootElementSelector = 'asdasd';
+        expect(config.rootElementSelector).toEqual('asdasd');
+      });
+    });
+    describe('setRootElement', () => {
+      test('supports children of element', () => {
+        const element = document.createElement('div');
+        config.rootElement = element;
+        expect(config._rootElement).toEqual(element);
+      });
+      test('does not support other trees extending node', () => {
+        const element = document.createTextNode('asd');
+        expect(() => {
+          config.rootElement = element;
+        }).toThrowErrorMatchingSnapshot();
+      });
+      test('does not support other random inputs', () => {
+        expect(() => {
+          config.rootElement = 'qqqq';
+        }).toThrowErrorMatchingSnapshot();
+      });
+    });
+
     describe('Getting rootElement', () => {
       describe('When rootElementSelector is present', () => {
         beforeEach(() => {
           config.rootElementSelector = '#main-wrapper';
         });
-
         afterEach(() => {
           const body = document.querySelector('body');
           if (body.firstChild) {
             body.removeChild(body.firstChild);
           }
         });
-
         describe('Element exists on page', () => {
           beforeEach(() => {
             render('<div id=\'main-wrapper\'>');
@@ -63,7 +96,6 @@ describe('Configuration Module', () => {
       });
     });
   });
-
   describe('Trim', () => {
     afterEach(() => {
       document.body.innerHTML = '';
