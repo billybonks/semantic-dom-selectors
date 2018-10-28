@@ -27,7 +27,7 @@ export function findObjects(selector, labelText, type = 'object', index = 0) {
     if (index === finders.length - 1) {
       return;
     }
-  } else if (key !== 'ariaNotFound') {
+  } else if (key !== 'not-aria-compliant') {
     notify(key, type, labelText, finder.errorText);
   }
   return objects || [];

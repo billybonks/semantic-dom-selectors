@@ -28,7 +28,7 @@ function findByLabel(selector, text) {
 
 export default {
   run: findByLabel,
-  key: 'invalidFor',
+  key: 'invalid-label-for',
   errorText(type, labelText) {
     return `Control ${labelText} found through invalid label for relationship`;
   },

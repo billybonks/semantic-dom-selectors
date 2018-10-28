@@ -7,7 +7,7 @@ function findByName(selector, text) {
 
 export default {
   run: findByName,
-  key: 'perceivedByName',
+  key: 'name-attribute',
   errorText(type, labelText) {
     return `Control ${labelText} found through input name attribute`;
   },
