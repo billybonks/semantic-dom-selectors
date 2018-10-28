@@ -3,7 +3,7 @@ import mergePresets from './config/merge-presets';
 
 export default {
   configure(configuration) {
-    const normalizedConfig = this._merge(configuration);
+    const normalizedConfig = mergePresets(configuration);
     config.reset();
     normalizedConfig.finders.forEach((finder) => {
       config.registerFinder(finder);
@@ -12,9 +12,8 @@ export default {
       config.registerActor(actor);
     });
     config.setErrorLevels(normalizedConfig.rules);
-  },
-
-  _merge(config) {
-    return mergePresets(config);
+    if (config.rootElementSelector) {
+      config.rootElementSelector = configuration.rootElementSelector;
+    }
   },
 };

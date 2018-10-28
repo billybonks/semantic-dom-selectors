@@ -1,6 +1,7 @@
 import config from '../src/config';
 import configure from '../src/configure';
 import presetDefault from '../src/presets/default';
+import mergePresets from '../src/config/merge-presets';
 
 describe('Configuration Module', () => {
   afterEach(() => {
@@ -33,9 +34,9 @@ describe('Configuration Module', () => {
           ],
         };
       });
-      describe('#_merge', () => {
+      describe('#mergePresets', () => {
         beforeEach(() => {
-          result = configure._merge(customConfig);
+          result = mergePresets(customConfig);
         });
 
         test('merges actors appropriately', () => {
@@ -76,13 +77,11 @@ describe('Configuration Module', () => {
     });
 
     describe('#configure', () => {
-      const originalMerge = configure._merge;
       const orignalRegisterActor = config.registerActor;
       const orignalRegisterFinder = config.registerFinder;
       const orignalSetErrorLevels = config.setErrorLevels;
 
       beforeEach(() => {
-        configure._merge = jest.fn().mockReturnValue(customConfig);
         config.registerActor = jest.fn();
         config.registerFinder = jest.fn();
         config.setErrorLevels = jest.fn();
@@ -90,14 +89,9 @@ describe('Configuration Module', () => {
       });
 
       afterEach(() => {
-        configure._merge = originalMerge;
         config.registerActor = orignalRegisterActor;
         config.registerFinder = orignalRegisterFinder;
         config.setErrorLevels = orignalSetErrorLevels;
-      });
-
-      it('merges the config', () => {
-        expect(configure._merge).toHaveBeenCalledTimes(1);
       });
 
       it('Calls registerActor with all actors', () => {
@@ -120,7 +114,7 @@ describe('Configuration Module', () => {
 
     describe('#_merge', () => {
       beforeEach(() => {
-        result = configure._merge(customConfig);
+        result = mergePresets(customConfig);
       });
       test('merges actors as is', () => {
         expect(result.actors).toEqual([...customConfig.actors]);
