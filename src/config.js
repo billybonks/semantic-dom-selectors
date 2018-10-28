@@ -52,9 +52,7 @@ class Config {
       if (element) {
         return element;
       }
-      console.warn('Tried to find root element using this.rootElementSelector, but no element was found, falling back to rootElement');
     }
-    console.warn('rootElement seems to be null falling back to document.documentElement');
     return document.documentElement;
   }
 

@@ -56,14 +56,6 @@ describe('Configuration Module', () => {
         });
         describe('Element does not exist on page', () => {
           whenRootElementExists();
-          test('warns use that element was not found', () => {
-            jest.spyOn(console, 'warn');
-            config.rootElement; // eslint-disable-line no-unused-expressions
-            expect(console.warn).toHaveBeenCalledTimes(2);
-            expect(console.warn).toHaveBeenCalledWith('Tried to find root element using this.rootElementSelector, but no element was found, falling back to rootElement');
-            expect(console.warn).toHaveBeenCalledWith('rootElement seems to be null falling back to document.documentElement');
-            console.warn.mockRestore();
-          });
           test('returns document.documentElement', () => {
             expect(config.rootElement).toEqual(document.documentElement);
           });
