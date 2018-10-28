@@ -85,7 +85,7 @@ describe('Configuration Module', () => {
         config.registerActor = jest.fn();
         config.registerFinder = jest.fn();
         config.setErrorLevels = jest.fn();
-        configure.configure(customConfig);
+        configure(customConfig);
       });
 
       afterEach(() => {

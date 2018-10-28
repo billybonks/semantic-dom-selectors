@@ -23,7 +23,7 @@ describe('Configuration Integration test', () => {
   });
 
   it('configures addon correctly', () => {
-    configure.configure(customConfig);
+    configure(customConfig);
     expect(config.rules).toEqual({
       'not-aria-compliant': 1,
       'invalid-label-for': 2,
