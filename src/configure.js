@@ -11,7 +11,7 @@ export default function (configuration) {
     config.registerActor(actor);
   });
   config.setErrorLevels(normalizedConfig.rules);
-  if (config.rootElementSelector) {
+  if (configuration.rootElementSelector) {
     config.rootElementSelector = configuration.rootElementSelector;
   }
 }

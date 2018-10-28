@@ -7,6 +7,7 @@ describe('Configuration Integration test', () => {
   beforeEach(() => {
     customConfig = {
       preset: 'default',
+      rootElementSelector: 'test-div',
       rules: {
         'something-else': 1,
         'invalid-label-for': 2,
@@ -33,6 +34,7 @@ describe('Configuration Integration test', () => {
       'qqq-www': 1,
     });
     expect(config.finders).toEqual([...defaultPreset.finders, ...customConfig.finders]);
+    expect(config.rootElementSelector).toEqual('test-div');
     expect(config.actors).toEqual(
       {
         button: [],
