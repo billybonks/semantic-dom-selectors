@@ -1,4 +1,5 @@
 import config from './config';
+import configure from './configure';
 import notify from './notify';
 
 import {
@@ -22,6 +23,7 @@ export default {
   findControls,
   findObject,
   findObjects,
+  configure,
   config,
   notify,
   findByLabel,
