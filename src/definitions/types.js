@@ -12,7 +12,7 @@ export const button = [
 
 
 export const text = [
-  'input',
+  'input:not([type="reset"]):not([type="button"]):not([type="submit"])',
   'textarea',
   '[role="slider"]',
   '[role="spinbutton"]',
