@@ -46,6 +46,9 @@ const _findControl = function (method, labelText, type = 'form') {
 };
 
 export function findControl(labelText, type) {
+  if (type === 'button') {
+    return this.findButton(labelText);
+  }
   return _findControl(findObject, labelText, type);
 }
 
