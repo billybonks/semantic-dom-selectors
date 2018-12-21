@@ -4,7 +4,7 @@ import config from './config';
 function buildMessage(rule, type, labelText) {
   switch (rule) {
     case 'ambiguousLabel':
-      return `Multiple ${type} labelled ${labelText} where found`;
+      return `Multiple ${type} labelled ${labelText} were found`;
     case 'missingObject':
       return `Could not find ${type} labelled '${labelText}'`;
     default:
