@@ -24,6 +24,8 @@ export const toggle = [
   '[role="menuitemcheckbox"]',
   '[role="checkbox"]',
   '[type="checkbox"]',
+  '[role="radio"]',
+  '[type="radio"]',
 ];
 
 export const select = [
