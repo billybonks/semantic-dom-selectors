@@ -6,7 +6,7 @@ const computeTextAlternativeForElement = (element, label = '') => {
   }
 
   if (!label && element.labels && element.labels.length) {
-    label = Array.prototype.slice.call(element.labels).map(label => label.innerText).join('');
+    label = Array.prototype.slice.call(element.labels).map((label) => label.innerText).join('');
   }
 
   // find rare case of type=image and alt

@@ -1,6 +1,6 @@
 import findByAria from './index';
 
-export default{
+export default {
   key: 'not-aria-compliant',
   run: findByAria,
 };

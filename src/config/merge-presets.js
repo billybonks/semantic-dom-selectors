@@ -26,11 +26,11 @@ export default function merge(config) {
   } else {
     preset = {};
   }
-  const normalizedPreset = Object.assign({}, empty, preset);
-  const normalizedConfig = Object.assign({}, empty, config);
+  const normalizedPreset = { ...empty, ...preset };
+  const normalizedConfig = { ...empty, ...config };
   const finders = uniq(normalizedPreset.finders.concat(normalizedConfig.finders));
   const actors = uniq(normalizedPreset.actors.concat(normalizedConfig.actors));
-  const rules = Object.assign({}, normalizedPreset.rules, normalizedConfig.rules);
+  const rules = { ...normalizedPreset.rules, ...normalizedConfig.rules };
   return {
     finders,
     actors,
