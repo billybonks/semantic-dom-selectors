@@ -12,25 +12,23 @@ const queryHash = {
   button: buttonQuery,
 };
 
-export function findObjects(selector, labelText, type = 'object', index = 0) {
+export function findObjects(selector, labelText, type = 'object') {
   const finders = config.finders;
-  if (finders.length === index) {
-    return;
-  }
-  const finder = finders[index];
-  const key = finder.key;
-  const strategy = finder.run;
 
-  let objects = strategy(selector, labelText);
-  if (!objects || objects.length === 0) {
-    objects = findObjects(selector, labelText, type, index + 1);
-    if (index === finders.length - 1) {
-      return;
+  for (let i = 0; i < finders.length; i += 1) {
+    const finder = finders[i];
+    const key = finder.key;
+    const strategy = finder.run;
+
+    const objects = strategy(selector, labelText);
+    if (objects || objects.length > 0) {
+      if (key !== 'not-aria-compliant') {
+        notify(key, type, labelText, finder.errorText);
+      }
+      return objects;
     }
-  } else if (key !== 'not-aria-compliant') {
-    notify(key, type, labelText, finder.errorText);
   }
-  return objects || [];
+  return null;
 }
 
 export function findObject(selector, labelText, type) {
