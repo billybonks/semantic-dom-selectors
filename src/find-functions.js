@@ -21,7 +21,7 @@ export function findObjects(selector, labelText, type = 'object') {
     const strategy = finder.run;
 
     const objects = strategy(selector, labelText);
-    if (objects || objects.length > 0) {
+    if (objects && objects.length > 0) {
       if (key !== 'not-aria-compliant') {
         notify(key, type, labelText, finder.errorText);
       }
