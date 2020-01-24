@@ -6,10 +6,10 @@ function findByName(selector, text) {
 
   if (text instanceof RegExp) {
     // filter by elements with name attribuets
-    const elementSelector = elements.map(element => `${element}[name]`).join(',');
-    return findAll(elementSelector).filter(element => matchLabel(text, element.getAttribute('name')));
+    const elementSelector = elements.map((element) => `${element}[name]`).join(',');
+    return findAll(elementSelector).filter((element) => matchLabel(text, element.getAttribute('name')));
   }
-  const elementSelector = elements.map(element => `${element}[name="${text}"]`).join(',');
+  const elementSelector = elements.map((element) => `${element}[name="${text}"]`).join(',');
   return findAll(elementSelector);
 }
 
