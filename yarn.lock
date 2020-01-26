@@ -133,6 +133,11 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
+aria-api@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/aria-api/-/aria-api-0.3.0.tgz#d0bb9995b05e13336e52759e6a80038773bf330a"
+  integrity sha512-EkMO0UJ70tlWtlGUf8IHUkFtJnd/LEZ/MKci9dw2fvtK/Oui4wxFJ6nzhLBA6nh1431lCEkXz3f0oCXDax22/A==
+
 arr-diff@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/arr-diff/-/arr-diff-2.0.0.tgz#8f3b827f955a8bd669697e4a4256ac3ceae356cf"

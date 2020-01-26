@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aria-api": "^0.3.0",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
@@ -37,7 +38,9 @@
       {
         "displayName": "lint",
         "runner": "jest-runner-eslint",
-        "testMatch": ["<rootDir>/src/**/*.js"]
+        "testMatch": [
+          "<rootDir>/src/**/*.js"
+        ]
       }
     ]
   }
