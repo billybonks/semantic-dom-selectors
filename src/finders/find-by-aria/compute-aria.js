@@ -1,60 +1,23 @@
+import aria from 'aria-api';
 import config from '../../config';
 
-const computeTextAlternativeForElement = (element, label = '') => {
-  if (!label && element.attributes['aria-label'] && element.attributes['aria-label'].value) {
-    label = element.attributes['aria-label'].value;
-  }
+export default function (element) {
+  let label = aria.getName(element);
 
-  if (!label && element.labels && element.labels.length) {
-    label = Array.prototype.slice.call(element.labels).map(label => label.innerText).join('');
-  }
-
-  // find rare case of type=image and alt
-  if (!label && element.attributes.type && element.attributes.type.value === 'image') {
-    if (element.attributes.alt) {
-      label = element.attributes.alt.value;
-    } else if (element.attributes.title) {
-      label = element.attributes.title.value;
-    }
-  }
-
-  // try innerText for buttons
+  // this used to be here to support buttons, but it didn't if it supported name from content
+  // https://w3c.github.io/aria/#namefromcontent
   if (!label && element.innerText) {
     label = element.innerText;
   }
 
-  // try value for input as buttons
-  if (!label && element.value) {
-    label = element.value;
-  }
-  // lastly use title
-  if (!label && element.attributes.title && element.attributes.title.value) {
-    label = element.attributes.title.value;
-  }
-
-  // fallback textContent for labels
+  // another way of getting the label that did not check if it was able to be used.
   if (!label && element.textContent) {
     label = element.textContent;
   }
 
-  return label;
-};
-
-export default function (element) {
-  let label = '';
-
-  // first travese one depth of lablledby
-  if (element.attributes['aria-labelledby'] && element.attributes['aria-labelledby'].value) {
-    const ids = element.attributes['aria-labelledby'].value;
-    label = ids.split(' ').map((id) => {
-      const element = config.rootElement.querySelector(`#${id}`);
-      if (element) {
-        return computeTextAlternativeForElement(element);
-      }
-      return '';
-    }).join(' ');
-  } else {
-    label = computeTextAlternativeForElement(element);
+  // Keeping this around incase it is required
+  if (!label && element.labels && element.labels.length) {
+    label = Array.prototype.slice.call(element.labels).map(label => label.innerText).join('');
   }
 
   if (label) {
