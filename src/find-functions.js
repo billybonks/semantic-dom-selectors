@@ -33,6 +33,9 @@ export function findObjects(selector, labelText, type = 'object') {
 
 export function findObject(selector, labelText, type) {
   const objects = findObjects(selector, labelText, type);
+  if (objects === null) {
+    return null;
+  }
   if (objects.length > 1) {
     notify('ambiguousLabel', type, labelText);
   }
