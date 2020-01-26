@@ -154,7 +154,6 @@ describe('compute name exceptions', () => {
     test('uses summary', () => {
       document.body.innerHTML = `
         <table id='el' summary="some info about this table">
-          <caption>awesome table</caption>
         </table>
       `;
       const element = findObject('table', 'some info about this table', 'table');
