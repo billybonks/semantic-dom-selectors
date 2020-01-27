@@ -3,7 +3,7 @@ import configure from '../src/configure';
 import config from '../src/config';
 
 describe('compute name exceptions', () => {
-  // implements test descrbied here https://www.w3.org/TR/html-aapi/#accessible-name-and-description-calculation
+  // implements test descrbied here https://www.w3.org/TR/html-aam-1.0/#accessible-name-and-description-computation
   beforeEach(() => {
     configure({ preset: 'default', rules: { 'invalid-label-for': 0 } });
   });
@@ -14,7 +14,7 @@ describe('compute name exceptions', () => {
   });
 
   // no way to know if it used label first
-  test('6.1 should use label before title', () => {
+  test('5.1 should use label before title', () => {
     document.body.innerHTML = `
       <label for="control">real label</label>
       <input id="control" title="this is my input" type="text" name="text" />
@@ -24,7 +24,7 @@ describe('compute name exceptions', () => {
   });
 
 
-  describe('6.2 button input should behave like buttons', () => {
+  describe('5.2 button input should behave like buttons', () => {
     test('it uses value', () => {
       document.body.innerHTML = `
         <input id="el" type="button" value="the world! dog!"/>
@@ -50,7 +50,7 @@ describe('compute name exceptions', () => {
     });
   });
 
-  test('6.3 input images can use alt', () => {
+  test('5.3 input images can use alt', () => {
     document.body.innerHTML = `
       <input id="control" alt="this is my input" type="image" />
     `;
@@ -59,7 +59,7 @@ describe('compute name exceptions', () => {
   });
 
   // no way to know if it used subtree first first
-  test('6.4 should use subtree before title', () => {
+  test('5.4 should use subtree before title', () => {
     document.body.innerHTML = `
       <button id="buttable" title="this is my input" >
         subtree datas
@@ -70,8 +70,30 @@ describe('compute name exceptions', () => {
   });
 
 
-  // need to check difference of 6.1
-  test.skip('6.5 ...', () => {
+  // need to check difference of 5.1
+  test.skip('5.5 ...', () => {
+    document.body.innerHTML = `
+      <button id="buttable" title="this is my input" >
+        subtree datas
+      </button>
+    `;
+    const foundInput = findButton('subtree datas');
+    expect(foundInput).toEqual(document.getElementById('buttable'));
+  });
+
+  // need to check difference of 5.1
+  test.skip('5.6 ...', () => {
+    document.body.innerHTML = `
+      <button id="buttable" title="this is my input" >
+        subtree datas
+      </button>
+    `;
+    const foundInput = findButton('subtree datas');
+    expect(foundInput).toEqual(document.getElementById('buttable'));
+  });
+
+  // need to check difference of 5.1
+  test.skip('5.7 ...', () => {
     document.body.innerHTML = `
       <button id="buttable" title="this is my input" >
         subtree datas
@@ -83,7 +105,7 @@ describe('compute name exceptions', () => {
 
 
   // also dunno if uses title first in theory
-  describe('6.6 summary', () => {
+  describe('5.8 summary', () => {
     test('it uses subtree', () => {
       document.body.innerHTML = `
         <summary id="summms" title="this is my input" >
@@ -105,7 +127,7 @@ describe('compute name exceptions', () => {
   });
 
 
-  describe('6.7 figure', () => {
+  describe('5.9 figure', () => {
     // also dunno if uses title first in theory
     test('uses figcaption', () => {
       document.body.innerHTML = `
@@ -130,7 +152,7 @@ describe('compute name exceptions', () => {
   });
 
   // also dunno if uses title first in theory
-  test('6.8 iamge uses alt', () => {
+  test('5.10 iamge uses alt', () => {
     document.body.innerHTML = `
       <img id="control" alt="this is imag" type="image" />
     `;
@@ -140,7 +162,7 @@ describe('compute name exceptions', () => {
 
 
   // order no idea amg
-  describe('6.9 table', () => {
+  describe('5.11 table', () => {
     test('uses caption', () => {
       document.body.innerHTML = `
         <table id='el'>
@@ -150,16 +172,6 @@ describe('compute name exceptions', () => {
       const element = findObject('table', 'awesome table', 'table');
       expect(element).toEqual(document.getElementById('el'));
     });
-
-    test('uses summary', () => {
-      document.body.innerHTML = `
-        <table id='el' summary="some info about this table">
-        </table>
-      `;
-      const element = findObject('table', 'some info about this table', 'table');
-      expect(element).toEqual(document.getElementById('el'));
-    });
-
 
     test('does not use inner text', () => {
       document.body.innerHTML = `
@@ -173,11 +185,31 @@ describe('compute name exceptions', () => {
   });
 
   // also dunno if uses title first in theory
-  test('6.10 a supports summary', () => {
-    document.body.innerHTML = `
-      <a id="control" summary="this is a cool link highly recommend"/> />
-    `;
-    const element = findObject('a', 'this is a cool link highly recommend', 'a');
-    expect(element).toEqual(document.getElementById('control'));
+  test.skip('5.12', () => {
+
+  });
+
+  test('5.13', () => {
+
+  });
+
+  // also dunno if uses title first in theory
+  test.skip('5.14', () => {
+
+  });
+
+  // also dunno if uses title first in theory
+  test.skip('5.15', () => {
+
+  });
+
+  // also dunno if uses title first in theory
+  test.skip('5.16', () => {
+
+  });
+
+  // also dunno if uses title first in theory
+  test.skip('5.17', () => {
+
   });
 });
