@@ -9,7 +9,7 @@
     "prepublish": "rollup -c",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll --notify",
-    "releaseit": "release-it --dry-run --no-git.requireUpstream"
+    "releaseit": "release-it"
   },
   "repository": {
     "type": "git",
