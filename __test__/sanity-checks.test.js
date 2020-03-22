@@ -11,8 +11,8 @@ describe('Sanity Checks', () => {
     document.body.innerHTML = '';
     config.reset();
   });
-
-  test('should not find alt on non altable elements', () => {
+  // discussing at https://github.com/xi/aria-api/issues/4
+  test.skip('should not find alt on non altable elements', () => {
     document.body.innerHTML = `
       <input id="control" alt="this is my input" type="text" name="text" />
     `;

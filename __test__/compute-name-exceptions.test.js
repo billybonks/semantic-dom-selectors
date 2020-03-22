@@ -23,8 +23,8 @@ describe('compute name exceptions', () => {
     expect(foundInput).toEqual(document.getElementById('control'));
   });
 
-
-  describe('5.2 button input should behave like buttons', () => {
+  // discussing default at https://github.com/xi/aria-api/issues/4
+  describe.skip('5.2 button input should behave like buttons', () => {
     test('it uses value', () => {
       document.body.innerHTML = `
         <input id="el" type="button" value="the world! dog!"/>
