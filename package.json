@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "lint:js": "eslint .",
     "build": "rollup -c",
     "prepublish": "rollup -c",
     "test:coverage": "jest --coverage",
