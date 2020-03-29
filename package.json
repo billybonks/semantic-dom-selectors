@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
+    "lint:js": "eslint .",
     "build": "rollup -c",
     "prepublish": "rollup -c",
     "test:coverage": "jest --coverage",
@@ -46,7 +47,7 @@
         "displayName": "lint",
         "runner": "jest-runner-eslint",
         "testMatch": [
-          "<rootDir>/src/**/*.js"
+          "<rootDir>/**/*.js"
         ]
       }
     ]

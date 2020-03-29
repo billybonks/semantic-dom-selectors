@@ -5,7 +5,7 @@ export default {
 
   plugins: [
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
     }),
   ],
 
@@ -14,7 +14,7 @@ export default {
     file: 'dist/semantic-dom-selectors.js',
     format: 'amd',
     amd: {
-      id: 'semantic-dom-selectors'
+      id: 'semantic-dom-selectors',
     },
     sourcemap: true,
   },
