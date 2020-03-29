@@ -13,6 +13,7 @@ import * as types from './definitions/types';
 import findByAria from './finders/find-by-aria/rule';
 import findByLabel from './finders/find-by-label';
 import findByName from './finders/find-by-name';
+import withinElement from './helpers/within-element';
 
 config.defaultFinders = [findByAria, findByLabel, findByName];
 
@@ -35,4 +36,5 @@ export default {
   selectQuery,
   formControlQuery,
   types,
+  withinElement,
 };
