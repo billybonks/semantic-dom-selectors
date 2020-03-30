@@ -43,18 +43,51 @@ const _findControl = function (method, labelText, type = 'form') {
   return method(queryHash[type], labelText, type);
 };
 
+/**
+ * Finds an element of a provided type with the provided label, if multiple elements are found,
+ * throws an error.
+ *
+ * @param {string} labelText
+ *
+ * @example
+ * findControl('button','Click Me')
+ */
 export function findControl(labelText, type) {
   return _findControl(findObject, labelText, type);
 }
 
+/**
+ * Finds multiple elements of a provided type with the provided label.
+ *
+ * @param {string} labelText
+ *
+ * @example
+ * findControls('button','Click Me')
+ */
 export function findControls(labelText, type) {
   return _findControl(findObjects, labelText, type);
 }
 
+/**
+ * Finds a button with the provided label, if multiple buttons are found, throws an error.
+ *
+ * @param {string} labelText
+ *
+ * @example
+ * findButton('Click Me')
+ */
 export function findButton(labelText) {
   return findControl(labelText, 'button');
 }
 
+/**
+ * Finds multiple buttons with the provided label.
+ *
+ * @param {string} labelText
+ *
+ * @example
+ * findButtons('Click Me')
+ */
 export function findButtons(labelText) {
   return findControls(labelText, 'button');
 }

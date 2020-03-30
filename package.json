@@ -8,6 +8,7 @@
     "lint:js": "eslint .",
     "build": "rollup -c",
     "prepublish": "rollup -c",
+    "docs": "documentation build src -f md > API.md",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll --notify",
     "releaseit": "release-it"
@@ -30,6 +31,7 @@
     "@release-it/conventional-changelog": "^1.1.0",
     "babel-jest": "^23.4.2",
     "eslint": "^4.19.1",
+    "documentation": "^12.1.4",
     "eslint-config-airbnb-base": "13.0.0",
     "eslint-plugin-import": "^2.12.0",
     "jest": "^23.4.2",
