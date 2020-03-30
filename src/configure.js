@@ -2,7 +2,7 @@ import config from './config';
 import mergePresets from './config/merge-presets';
 
 /**
- * Configures the library to behave in a certain way
+ * Configures the behaviour of semantic-dom-selectors.
  *
  *
  * @param {object} configuration

@@ -44,8 +44,8 @@ const _findControl = function (method, labelText, type = 'form') {
 };
 
 /**
- * Finds an element of given type with the given label, if elements are found
- * throws an error
+ * Finds an element of a provided type with the provided label, if multiple elements are found,
+ * throws an error.
  *
  * @param {string} labelText
  *
@@ -57,7 +57,7 @@ export function findControl(labelText, type) {
 }
 
 /**
- * Finds multpile elements of given type with the given label.
+ * Finds multiple elements of a provided type with the provided label.
  *
  * @param {string} labelText
  *
@@ -69,7 +69,7 @@ export function findControls(labelText, type) {
 }
 
 /**
- * Finds a button with the given label, if mutiple buttons found throws an error
+ * Finds a button with the provided label, if multiple buttons are found, throws an error.
  *
  * @param {string} labelText
  *
@@ -81,7 +81,7 @@ export function findButton(labelText) {
 }
 
 /**
- * Finds multiple buttons with the given label
+ * Finds multiple buttons with the provided label.
  *
  * @param {string} labelText
  *

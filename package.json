@@ -8,7 +8,7 @@
     "lint:js": "eslint .",
     "build": "rollup -c",
     "prepublish": "rollup -c",
-    "docs": "documentation build src -f md >> API.md",
+    "docs": "documentation build src -f md > API.md",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watchAll --notify",
     "releaseit": "release-it"
